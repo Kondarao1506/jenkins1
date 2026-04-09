@@ -21,4 +21,15 @@ pipeline{
             }
         }
     }
+post{
+    always{
+        echo "i am alsways executes"
+    }
+    failure{
+        echo "i execute when i failed"
+    }
+    success{
+        echo "sucesss"
+    }
+}
 }
