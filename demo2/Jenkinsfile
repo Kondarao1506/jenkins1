@@ -24,6 +24,7 @@ pipeline{
 post{
     always{
         echo "i am alsways executes"
+        cleanWs()
     }
     failure{
         echo "i execute when i failed"
