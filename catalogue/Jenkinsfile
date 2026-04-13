@@ -1,0 +1,41 @@
+pipeline{
+    agent{
+        label AGENT-1
+    }
+    environment{
+        apiversion=""
+    }
+    stages{
+        stage('read version') {
+            steps{
+                def pkg = readJSON file : 'package.json'
+                apiversion = pkg.version
+                echo "appversion : ${apiversion}"
+            }
+        }
+
+        stage('install dependencies') {
+            steps{
+                script{
+                    sh """
+
+                    npm install
+
+                    """
+                }
+            }
+        }
+
+        stage{
+            steps{
+                script{
+                    sh """
+                    docker build -t catalogue:${apiversion} .
+                    """
+                }
+            }
+        }
+    }
+
+    
+}
