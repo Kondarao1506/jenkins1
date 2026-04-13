@@ -1,9 +1,9 @@
 pipeline{
     agent{
-        label AGENT-1
+        label 'AGENT-1'
     }
     stages{
-        stage("Build Image"){
+        stage('Build Image'){
             steps{
                 sh """
                 docker build -t kondarao/hello:v1 .
@@ -11,7 +11,7 @@ pipeline{
             }
         }
 
-        stage("Run image"){
+        stage('Run image'){
             steps{
                 sh """
                 docker run -d -p 80:80 kondarao/hello:v1
@@ -22,6 +22,10 @@ pipeline{
     }
 
     post{
+
+        always{
+            cleanWs()
+        }
         failure{
             echo "build and run failed"
         }
