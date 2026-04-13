@@ -5,9 +5,9 @@ pipeline{
     stages{
         stage('Build Image'){
             steps{
-                script{
+                sh """
                 docker build -t kondarao/hello:v1 .
-                }
+                """
             }
         }
 
