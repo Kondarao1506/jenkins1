@@ -14,7 +14,6 @@ pipeline{
         stage('Run image'){
             steps{
                 sh """
-                cd /jenkinstest
                 docker run -d -p 80:80 kondarao/hello:v1
 
                 """
