@@ -14,6 +14,7 @@ pipeline{
         stage('Run image'){
             steps{
                 sh """
+                docker rm -f kondarao/hello:v1
                 docker run -d -p 80:80 kondarao/hello:v1
 
                 """
